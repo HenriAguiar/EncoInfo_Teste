@@ -1,12 +1,10 @@
-describe('mario', ()=>{
-    it('acessa página',()=>{
-        cy.visit('https://devfinance-agilizei.netlify.app/')
-        cy.get('header > img').should('be.visible')
-});
-    it('Add transaction',()=>{
-        cy.visit('https://devfinance-agilizei.netlify.app/')
-        cy.get('header > img').should('be.visible')
+import commands from '../support/commands'
 
+describe('mario', ()=>{
+    beforeEach(()=>{
+        cy.acessaDevFinances()
+    });
+    it('Add transaction',()=>{
         cy.get('#transaction > .button').click()
         cy.get('#form > h2').contains('Nova Transação')
 
@@ -15,10 +13,7 @@ describe('mario', ()=>{
         cy.get('#date').type('2023-10-12')
         cy.get('button').contains('Salvar').click()
     });
-
     it('delete transaction',()=>{
-        cy.visit('https://devfinance-agilizei.netlify.app/')
-        cy.get('header > img').should('be.visible')
         cy.get('#transaction > .button').click()
         cy.get('#form > h2').contains('Nova Transação')
 
